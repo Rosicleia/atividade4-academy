@@ -4,9 +4,7 @@ Feature: Pesquisar um usuário cadastrado por nome ou e-mail
     Para ser capaz de encontrar um usuário cadastrado facilmente
 
     Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"       
-        * configure logPrettyResponse = true       
-
+        Given url baseUrl
 
     Scenario: Pesquisar um usuário cadastrado pelo nome        
         * def usuario = { name: "#('Rosicleia ' + (java.util.UUID.randomUUID() + '').substring(24))", email: "#(java.util.UUID.randomUUID() + '@email.com')" }

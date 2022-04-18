@@ -4,9 +4,8 @@ Feature: Listar todos os usuários cadastrados
     Para ter as informações de todos os usuários
 
     Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
+        Given url baseUrl
         And path "users"
-        * configure logPrettyResponse = true
     
     Scenario: Listar todos os usuários cadastrados
         When method get

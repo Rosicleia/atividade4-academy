@@ -4,10 +4,8 @@ Feature: Remover um usuário cadastrado
     Para que suas informações não estejam mais registradas
 
     Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
-        And path "users"
-        * configure logPrettyResponse = true       
-
+        Given url baseUrl
+        And path "users" 
 
     Scenario: Remover um usuário cadastrado pelo identificador único        
         * def usuario = { name: "Rosicléia Sales", email: "#(java.util.UUID.randomUUID() + '@email.com')" }
@@ -15,7 +13,7 @@ Feature: Remover um usuário cadastrado
         When method post
         Then status 201
         * def idUsuario = response.id
-
+               
         Given path "users", idUsuario
         When method delete
         Then status 204

@@ -4,10 +4,8 @@ Feature: Encontrar um usuário cadastrado
     Para visualizar as informações deste usuário
 
     Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
+        Given url baseUrl
         And path "users"
-        * configure logPrettyResponse = true
-
 
     Scenario: Encontrar um usuário por Id
         # Função para gerar e-mail aleatório java.util.UUID.randomUUID() + '@email.com'

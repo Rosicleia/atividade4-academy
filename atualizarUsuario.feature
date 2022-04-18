@@ -4,10 +4,8 @@ Feature: Atualizar um usuário cadastrado
     Para ter o registro de suas informações atualizadas
 
     Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
+        Given url baseUrl
         And path "users"
-        * configure logPrettyResponse = true       
-
 
     Scenario: Atualizar informações de um usuário cadastrado
         # Função para gerar e-mail aleatório java.util.UUID.randomUUID() + '@email.com'

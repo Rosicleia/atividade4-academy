@@ -1,13 +1,12 @@
 
-Feature: Cadastrar novo usuário
+Feature: Cadastrar um novo usuário
     Como uma pessoa qualquer
     Desejo registrar informações de usuário
     Para poder manipular estas informações livremente
 
-    Background: Configurar base url
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
+    Background: Base url 
+        Given url baseUrl
         And path "users"
-        * configure logPrettyResponse = true
       
     Scenario: Cadastrar um novo usuário com sucesso
         * def usuario = { name: "Rosicléia Sales", email: "rosicleia@email.com" }
