@@ -8,21 +8,15 @@ Feature: Encontrar um usuário cadastrado
         And path "users"
 
     Scenario: Encontrar um usuário por Id
-        # Função para gerar e-mail aleatório java.util.UUID.randomUUID() + '@email.com'
-        * def usuario = { name: "Rosicléia Sales", email: "#(java.util.UUID.randomUUID() + '@email.com')" }
-        Given request usuario
-        When method post
-        Then status 201
-        * def idUsuario = response.id
-        
-        Given path "users"
-        And path idUsuario
+        * def usuario = call read("cadastroUsuario.feature")
+
+        Given path usuario.response.id
         When method get
         Then status 200
         And match response contains { id:"#uuid", name:"#string", email:"#string", createdAt:"#string", updatedAt:"#string" }
-        And assert response.id == idUsuario
-        And assert response.name == usuario.name
-        And assert response.email == usuario.email
+        And assert response.id == usuario.response.id
+        And assert response.name == usuario.response.name
+        And assert response.email == usuario.response.email
   
     Scenario: Não deve encontrar um usuário se o identificador único for inválido     
         Given path "identificador-invalido"
@@ -30,8 +24,7 @@ Feature: Encontrar um usuário cadastrado
         Then status 400
 
     Scenario: Não deve encontrar um usuário se não for localizado pelo identificador único
-        # Gerando um id aleatório válido que não esta cadastrado
-        * def idUsuario = java.util.UUID.randomUUID() + ''
+        * def idUsuario = java.util.UUID.randomUUID().toString()
         Given path idUsuario
         When method get
         Then status 404

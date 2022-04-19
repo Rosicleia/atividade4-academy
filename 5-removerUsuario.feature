@@ -8,27 +8,23 @@ Feature: Remover um usuário cadastrado
         And path "users" 
 
     Scenario: Remover um usuário cadastrado pelo identificador único        
-        * def usuario = { name: "Rosicléia Sales", email: "#(java.util.UUID.randomUUID() + '@email.com')" }
-        Given request usuario
-        When method post
-        Then status 201
-        * def idUsuario = response.id
-               
-        Given path "users", idUsuario
+        * def usuario = call read("cadastroUsuario.feature")
+
+        Given path usuario.response.id
         When method delete
         Then status 204
 
-        Given path "users", idUsuario
+        Given path "users", usuario.response.id
         When method get
         Then status 404
   
     Scenario: Não deve remover o usuário se o identificador único for inválido       
-        Given path "identificador-invalido"
+        Given path "id-invalido"
         When method delete
         Then status 400
 
     Scenario: Deve responder como se tivesse removido um usuário se não for localizado pelo identificador único
-        * def idUsuario = java.util.UUID.randomUUID() + ''
+        * def idUsuario = java.util.UUID.randomUUID().toString()
         Given path idUsuario
         When method delete
         Then status 204
