@@ -18,7 +18,7 @@ Feature: Remover um usuário cadastrado
         When method get
         Then status 404
   
-    Scenario: Não deve remover o usuário se o identificador único for inválido       
+    Scenario: Não deve ser possível remover um usuário se o identificador único for inválido       
         Given path "id-invalido"
         When method delete
         Then status 400

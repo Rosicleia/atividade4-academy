@@ -18,12 +18,12 @@ Feature: Encontrar um usuário cadastrado
         And assert response.name == usuario.response.name
         And assert response.email == usuario.response.email
   
-    Scenario: Não deve encontrar um usuário se o identificador único for inválido     
+    Scenario: Não deve ser possível encontrar um usuário se o identificador único for inválido     
         Given path "identificador-invalido"
         When method get
         Then status 400
 
-    Scenario: Não deve encontrar um usuário se não for localizado pelo identificador único
+    Scenario: Não deve ser possível encontrar um usuário se não for localizado pelo identificador único
         * def idUsuario = java.util.UUID.randomUUID().toString()
         Given path idUsuario
         When method get

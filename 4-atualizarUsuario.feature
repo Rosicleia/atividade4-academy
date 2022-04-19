@@ -21,14 +21,14 @@ Feature: Atualizar um usuário cadastrado
         And assert response.createdAt == usuario.response.createdAt
         And assert response.updatedAt > usuario.response.updatedAt
   
-    Scenario: Não deve atualizar as informaões de um usuário se o identificador único for inválido
+    Scenario: Não deve ser possível atualizar as informaões de um usuário se o identificador único for inválido
         * def atualizaUsuario = { name: "Usuário Atualizado", email: "#('email-atual' + java.util.UUID.randomUUID() + '@email.com')" }
         Given path "id-invalido"
         And request atualizaUsuario
         When method put
         Then status 400
 
-    Scenario: Não deve atualizar as informações de um usuário se não for localizado pelo identificador único
+    Scenario: Não deve ser possível atualizar as informações de um usuário se não for localizado pelo identificador único
         * def atualizaUsuario = { name: "Usuário Atualizado", email: "#('email-atual' + java.util.UUID.randomUUID() + '@email.com')" }
         * def idUsuario = java.util.UUID.randomUUID().toString()
         Given path idUsuario
